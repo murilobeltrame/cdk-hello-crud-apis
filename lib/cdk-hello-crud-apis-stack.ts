@@ -101,7 +101,7 @@ export class CdkHelloCrudApisStack extends Stack {
     todosResource.addMethod('GET', new LambdaIntegration(listTodoFunction))
     todosResource.addMethod('POST', new LambdaIntegration(createTodoFunction))
 
-    const todoItemResource = todosResource.addResource(primaryKeyName, {
+    const todoItemResource = todosResource.addResource(`{${primaryKeyName}}`, {
       defaultCorsPreflightOptions: {
         allowOrigins: Cors.ALL_ORIGINS,
         allowHeaders: [
