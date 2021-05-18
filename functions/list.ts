@@ -1,9 +1,12 @@
 import { DynamoDB } from "aws-sdk";
+import { APIGatewayProxyResult } from "aws-lambda";
+import { Errors } from "./errors";
 
-const db = new DynamoDB.DocumentClient();
 const TABLE_NAME = process.env.TABLE_NAME || '';
 
-export async function handler() {
+const db = new DynamoDB.DocumentClient();
+
+export async function handler(): Promise<APIGatewayProxyResult> {
     try {
         const response = await db.scan({
             TableName: TABLE_NAME
@@ -16,7 +19,7 @@ export async function handler() {
         console.error(error);
         return {
             statusCode: 500,
-            body: 'Internal server error.'
+            body: Errors.INTERNAL_SERVER_ERROR
         }
     }
 }
