@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "debug": "cdk synth --no-staging > template.yaml && sam local start-api"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.98.0",
@@ -22,6 +23,7 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.98.0",
     "@aws-cdk/aws-dynamodb": "^1.98.0",
     "@aws-cdk/aws-lambda": "^1.98.0",
     "@aws-cdk/core": "1.98.0",
